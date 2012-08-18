@@ -19,8 +19,6 @@ public class JavaSocket {
             serverSocket = new ServerSocket(PORT);
             boolean runFlag = true;
             while(runFlag){
-                System.out.println("Waiting...");
-                
                 Socket socket = serverSocket.accept();
                 BufferedReader br =
                     new BufferedReader(
@@ -38,10 +36,6 @@ public class JavaSocket {
             		} catch (IOException e) {
             			e.printStackTrace();
             		}
-                    
-                    if( "exit".equals(str)){
-                        runFlag = false;
-                    }
                 }
                 if( socket != null){
                     socket.close();

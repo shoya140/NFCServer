@@ -3,18 +3,13 @@ use warnings;
 use Socket;
 
 my $sock_receive;
-socket( $sock_receive, PF_INET, SOCK_STREAM, getprotobyname( 'tcp' ) )
-    or die "Cannot create socket: $!";
+socket( $sock_receive, PF_INET, SOCK_STREAM, getprotobyname( 'tcp' ) ) or die "Cannot create socket: $!";
 
 my $local_port = 10000;
 my $pack_addr = sockaddr_in( $local_port, INADDR_ANY );
 
-bind( $sock_receive, $pack_addr )
-    or die "Cannot bind: $!";
-
-listen( $sock_receive, SOMAXCONN )
-    or die "Cannot listen: $!";
-
+bind( $sock_receive, $pack_addr ) or die "Cannot bind: $!";
+listen( $sock_receive, SOMAXCONN ) or die "Cannot listen: $!";
 my $sock_client;
 
 while( accept( $sock_client, $sock_receive ) ){
